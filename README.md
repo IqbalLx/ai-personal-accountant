@@ -1,0 +1,5 @@
+- personal accountant agent -> root also act as routing agent
+- image to structured spending data agent -> one-shot agent
+  - with tool save_spending
+- query SQL agent to summarize data -> Loop agent
+  - with tool query_database
