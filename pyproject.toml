@@ -1,0 +1,17 @@
+[project]
+name = "ai-personal-accountant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "google-adk>=1.0.0",
+    "psycopg>=3.2.9",
+    "pydantic>=2.11.5",
+    "python-dotenv>=1.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+]

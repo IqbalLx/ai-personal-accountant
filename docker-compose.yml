@@ -1,0 +1,17 @@
+services:
+  pg:
+    image: postgres:17-alpine
+    restart: always
+    volumes:
+      - padb:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+    environment:
+      - POSTGRES_DB=padb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+volumes:
+  padb:
