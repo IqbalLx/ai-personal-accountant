@@ -28,6 +28,7 @@ query_refinement_agent = Agent(
     description="A query refinement agent",
     instruction=prompt.QUERY_REFINEMENT_PROMPT,
     disallow_transfer_to_parent=True,
+    output_key="sql_query",
 )
 
 query_executor_agent = Agent(

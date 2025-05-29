@@ -6,7 +6,8 @@ from psycopg.rows import dict_row
 from google.adk.tools.tool_context import ToolContext
 from pydantic import ValidationError
 
-from personal_accountant.types.type import SpendingAgentOutput
+if __name__ != "__main__":
+    from personal_accountant.types.type import SpendingAgentOutput
 
 if os.path.exists(".env"):
     load_dotenv(".env")
