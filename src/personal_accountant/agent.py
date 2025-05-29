@@ -3,6 +3,7 @@ from google.adk.tools.agent_tool import AgentTool
 
 from personal_accountant import prompt, model
 from personal_accountant.sub_agents.spend_extractor.agent import spend_extractor_agent
+from personal_accountant.sub_agents.spend_retriever.agent import spend_retriever_agent
 from personal_accountant.tools.database import save_spending
 
 personal_accountant_agent = Agent(
@@ -10,7 +11,7 @@ personal_accountant_agent = Agent(
     name="personal_accountant_agent",
     description="A helpful personal accountant",
     instruction=prompt.PERSONAL_ACCOUNTANT_PROMPT,
-    # sub_agents=[],
+    sub_agents=[spend_retriever_agent],
     tools=[AgentTool(agent=spend_extractor_agent), save_spending],
 )
 

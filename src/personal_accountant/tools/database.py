@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 
 from psycopg import Connection, Error as DBError
+from psycopg.rows import dict_row
 from google.adk.tools.tool_context import ToolContext
 from pydantic import ValidationError
 
@@ -182,21 +183,39 @@ def save_spending(tool_context: ToolContext):
             cursor.close()
 
 
-def query_database(conn: Connection):
-    def execute(query: str):
-        try:
-            cur = conn.cursor()
-            cur.execute(query)
-            results = cur.fetchall()
-            results = [res for res in results]
-            cur.close()
+def query_database(query: str, tool_context: ToolContext):
+    """
+    Use this tool to query from the database.
 
-            return results
+    Args:
+        query: The SQL query to be executed into the database.
+        tool_context: The ADK tool context.
+    """
+    get_db_conn()
 
-        except Exception as e:
-            return f"Query {query} errored with message: {e}, fix and try again"
+    global conn
 
-    return execute
+    cur = conn.cursor(row_factory=dict_row)
+
+    try:
+        res = cur.execute(query).fetchall()
+
+        tool_context.state["sql_output"] = res
+
+        return {
+            "state": "success",
+            "result": "data retrieved, you can call exit_loop tool now",
+        }
+    except Exception as e:
+        tool_context.state["sql_error"] = e
+
+        return {
+            "state": "error",
+            "result": f"query errored with message {e}",
+        }
+
+    finally:
+        cur.close()
 
 
 if __name__ == "__main__":
