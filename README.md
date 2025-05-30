@@ -49,7 +49,7 @@ You'll need a Google AI Studio API key to interact with Google's AI models.
     - Go to [Google AI Studio](https://aistudio.google.com) and get your API key.
     - You will likely need to set this key as an environment variable or in a configuration file as per the project's requirements (e.g., `GOOGLE_API_KEY="YOUR_API_KEY"`).
 
-2.  **(Optional) Enable Gemini Pro Model Usage**:
+2.  **Enable Gemini Pro Model Usage**:
 
     - To use the Gemini Pro model, ensure your Google Cloud project associated with the API key has billing enabled. You can configure this in the [Google Cloud Console](https://console.cloud.google.com/).
 
