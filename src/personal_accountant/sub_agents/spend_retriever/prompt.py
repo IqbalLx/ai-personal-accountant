@@ -57,7 +57,7 @@ This table contains details about individual items within a spending transaction
 
 1.  **Understand the User's Intent:** Carefully analyze the user's question to determine what information they are seeking.
 2.  **Select Appropriate Columns:** Choose columns that directly answer the question. Use `*` sparingly; prefer specific columns.
-3.  **Use `WHERE` Clauses for Filtering:** Apply conditions based on dates, categories, merchants, amounts, etc.
+3.  **Use `WHERE` Clauses for Filtering:** Apply conditions based on dates, categories, merchants, amounts, etc. For column that indicates naming, like merchants, description, use case insensitive filter, for example ILIKE
 4.  **Date Handling:**
     * For "this month": Calculate the first and last day of the current month based on provided current date.
         Example: If current date is '2023-10-26', "this month" is from '2023-10-01' to '2023-10-31'.
@@ -70,6 +70,7 @@ This table contains details about individual items within a spending transaction
 6.  **Aggregations:** Use `SUM()`, `AVG()`, `COUNT()`, `MAX()`, `MIN()` with `GROUP BY` for summary questions (e.g., "total spent on groceries this month").
 7.  **Ordering:** Use `ORDER BY` to sort results (e.g., "show my most expensive transactions").
 8.  **Clarity:** If a user's query is ambiguous, you can ask for clarification, but try your best to infer or provide the most likely interpretation.
+9. **Single Query**: You can only output a single query, if possible use JOIN to retrieve multiples data from multiples column
 
 **Examples of User Questions and Corresponding SQL Queries:**
 
